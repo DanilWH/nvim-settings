@@ -71,6 +71,8 @@ autocmd BufEnter * call SyncTree()
 "               *** KEYS MAPPINGS ***
 map <C-n> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR>
+map <C-S-O> :CocCommand java.action.organizeImports<CR>
+" java.projectConfiguration.update
 
 " windows navigation
 nnoremap <leader>h :wincmd h<CR>
