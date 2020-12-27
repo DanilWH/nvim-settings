@@ -44,30 +44,6 @@ let g:coc_global_extensions = [
   \ 'coc-java',
   \ ]
 
-
-" open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree
-
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
-
-
 "               *** KEYS MAPPINGS ***
 map <C-n> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR>
@@ -83,6 +59,49 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>b :bp<CR>
 nnoremap <leader>d :bd<CR>
+
+
+"                 *** AUTOMATIC ACTIONS ***
+" open NERDTree automatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+" call InsertJavaPackage() if a new empty file was created from NERDTree.
+autocmd BufRead *.java if getfsize(expand('%'))==0|call InsertJavaPackage()|endif
+
+"                  *** FUNCTIONS ***
+" sync open file with NERDTree
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Auto insert Java class template when creating a new Java file
+function! InsertJavaPackage()
+  let filename = expand("%")
+  let filename = substitute(filename, "\.java$", "", "")
+  let dir = getcwd() . "/" . filename
+  let dir = substitute(dir, "^.*\/src/main/java\/", "", "")
+  let dir = substitute(dir, "\/[^\/]*$", "", "")
+  let dir = substitute(dir, "\/", ".", "g")
+  let filename = substitute(filename, "^.*\/", "", "")
+  let dir = "package " . dir . ";"
+  let result = append(0, dir)
+  let result = append(1, "")
+  let result = append(2, "class " . filename . " {")
+  let result = append(4, "}")
+endfunction
+
 
 "                       *** COC.VIM CONFIGURATIONS ***
 " TextEdit might fail if hidden is not set.
