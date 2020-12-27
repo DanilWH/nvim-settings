@@ -70,11 +70,17 @@ autocmd BufEnter * call SyncTree()
 
 "               *** KEYS MAPPINGS ***
 map <C-n> :NERDTreeToggle<CR>
+map <C-a> <esc>ggVG<CR>
+
 " windows navigation
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
+" buffers navigation
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>b :bp<CR>
+nnoremap <leader>d :bd<CR>
 
 "                       *** COC.VIM CONFIGURATIONS ***
 " TextEdit might fail if hidden is not set.
