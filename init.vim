@@ -49,8 +49,6 @@ let g:coc_global_extensions = [
 "               *** KEYS MAPPINGS ***
 map <C-n> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR>
-map <C-S-O> :CocCommand java.action.organizeImports<CR>
-" java.projectConfiguration.update
 
 " windows navigation
 nnoremap <leader>h :wincmd h<CR>
@@ -62,7 +60,6 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>b :bp<CR>
 nnoremap <leader>d :bd<CR>
 
-
 "                 *** AUTOMATIC ACTIONS ***
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
@@ -71,6 +68,10 @@ autocmd VimEnter * NERDTree
 autocmd BufEnter * call SyncTree()
 " call InsertJavaPackage() if a new empty file was created from NERDTree.
 autocmd BufRead *.java if getfsize(expand('%'))==0|call InsertJavaPackage()|endif
+" call different commands depending on the file type.
+autocmd FileType java       nnoremap <buffer> <C-S-O> :CocCommand java.action.organizeImports<CR>
+autocmd FileType xml        nnoremap <buffer> <C-S-O> :CocCommand java.projectConfiguration.update<CR>
+
 
 "                  *** FUNCTIONS ***
 " sync open file with NERDTree
