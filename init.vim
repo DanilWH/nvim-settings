@@ -42,6 +42,8 @@ let g:airline_powerline_fonts = 1
 let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-java',
+  \ 'coc-prettier',
+  \ 'coc-tsserver',
   \ ]
 
 "               *** KEYS MAPPINGS ***
