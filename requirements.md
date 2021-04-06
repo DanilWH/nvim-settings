@@ -49,28 +49,28 @@ If you've gotten a problem:
     ROOT CAUSE : Google dropped support for 32-bit Chrome on Linux triggering an error when updating apt in 64-bit systems (with multi arch enabled) ... details here : http://www.omgubuntu.co.uk/2016/03/fix-failed-to-fetch-google-chrome-apt-error-ubuntu  
 
     To confirm you are using 64 bit ubuntu with multiarch enabled issue
-    `dpkg --print-foreign-architectures`  
+    ```dpkg --print-foreign-architectures```  
 
     if it says
-    `i386`  
+    ```i386```  
 
     then you have added 32 bit support, this will list your native arch ... issue
-    `dpkg --print-architecture`  
+    ```dpkg --print-architecture```  
 
     if you are native 64 you will see this output so do SOLUTION shown above
-    `amd64`  
+    ```amd64```  
 
     Here is the command to remove multi architecture ( only if you have no 32 bit applications )
-    `sudo dpkg --remove-architecture i386`
+    ```sudo dpkg --remove-architecture i386```
 
  -  __The repository cdrom… does not have a Release file__
     To resolve this problem from terminal you must remove/comment this CD-ROM repository source directly from /etc/apt/sources.list
-    `sudo nano /etc/apt/sources.list`
+    ```sudo nano /etc/apt/sources.list```
     and comment or remove lines that include cdrom. eg:
-    `deb cdrom:[Ubuntu-Server 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.3)]/ xenial main restricted`
+    ```deb cdrom:[Ubuntu-Server 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.3)]/ xenial main restricted```
   
 After fixing the problems, run the above command again and after success, run the following command to install node:
-`sudo apt-get install -y nodejs`
+```sudo apt-get install -y nodejs```
 That's it.
 
   
