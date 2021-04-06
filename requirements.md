@@ -33,13 +33,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ```
 
 ### Download node.js
-(as coc.nvim suggests)
+##### (as coc.nvim suggests)
 Install nodejs >= 10.12:
 ```
 curl -sL install-node.now.sh/lts | bash
 ```  
   
-(as from the official node.js repository)
+##### (as from the official node.js repository)
 ```
 curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -90,7 +90,7 @@ sudo apt-get install -y nodejs
 That's it.
 
   
-(as from the official node.js repository using `snap`.)
+##### (as from the official node.js repository using `snap`.)
 ```
 sudo snap install node --classic --channel=14
 ```
