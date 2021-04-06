@@ -23,3 +23,27 @@ Go to [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and ins
 
 ### Install all the plugins
  Run command `:PlugInstall`. All the plugins will be installed under `~/AppData/Local/nvim/plugged`.
+
+# Ubuntu
+### Download the plug.vim plugin. (so that you can use `:PlugInstall`)
+Download plug.vim and put it in the "autoload" directory.
+```
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+### Download node.js
+(as coc.nvim suggests)
+Install nodejs >= 10.12:
+```
+curl -sL install-node.now.sh/lts | bash
+```
+(as from the official node.js repository)
+```
+curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+(as from the official node.js repository using `snap`.)
+```
+sudo snap install node --classic --channel=14
+```
