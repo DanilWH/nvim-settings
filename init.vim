@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 colorscheme gruvbox
+highlight Normal ctermbg=None
 
 "                    *** LET CONFIGURATIONS ***
 let mapleader = " "
